@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Javascript Material</title>
+</head>
+<body>
+
+	<h2 id="header1">JAVASCRIPT PAGE</h2>
+	
+	<div id = "dom1">
+	</div>
+	
+	<button id="notice" onclick="alert(2+2);">notice</button>
+	
+	<script>
+	
+	/* DOM */
+	
+	document.getElementById('header1').innerHTML = "<p>Hellow world</p>"
+	document.getElementById('dom1').innerHTML = "<table border='1'><tr><td>Kolom 1 Baris 1</td><td>Kolom 2 Baris 1</td></tr><tr><td>Kolom 1 Baris 2</td><td>Kolom 2 Baris 2</td></tr></table>"
+	/* END DOM */
+	
+		var data = 900
+		data = 9
+		var data = "halo"
+		console.log("var dtype : "+data)
+		
+		let data1 = 8900;
+		let data2 = 80;
+		
+		/* const data3 = 700;
+		data3 = 70; */
+		
+		function alertFunc(){
+			alert("Halo bro!!")
+		}
+		
+		function biodata(name, age, address){			
+			console.log(name+' '+age+' '+address)
+		}
+		
+		biodata('jijo', 24, 'Bandung')
+		
+		function numb(){
+			return 5
+		}
+		
+		function logic1(a){
+			return a * numb()	
+		}
+	</script>
+</body>
+</html>

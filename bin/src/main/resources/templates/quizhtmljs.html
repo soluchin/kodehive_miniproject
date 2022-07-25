@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bikin akun</title>
+</head>
+<body>
+<h1 style="font-family: serif;color: blue;">Buat Account Baru</h1>
+<hr>
+<p style="font-family: sans;color:darkblue;">Harap buat akun terlebih dahulu</p>
+
+<br>	
+
+<form onclick="fungsi()">
+
+	<h2 style="font-family: serif;">Login</h2>
+	<hr>
+	<table>
+		<tr>
+			<td>Username</td>
+			<td><input type="text" name="user" id="user" onchange="fungsi()"></td>
+			<td><a id="warnuser" style="color: red;"></a></td>
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td><input type="password" name="pass" id="pass" onchange="fungsi()"></td>
+			<td><a id="warnpass" style="color: red;"></a></td>
+		</tr>
+		<tr>
+			<td>Ulangi Password</td>
+			<td><input type="password" name="repass" id="repass" onchange="fungsi()"></td>
+			<td><a id="warnrepass" style="color: red;"></a></td>
+		</tr>
+	</table>
+	
+	
+	<h2 style="font-family: serif;">Identitas</h2>
+	<hr>
+	<table>
+		<tr>
+			<td>Nama Sesuai Identitas</td>
+			<td><input type="text" name="namaidentitas" id="namaidentitas" onchange="fungsi()"></td>
+			<td><a id="warnnamaidentitas" style="color: red;"></a></td>
+		</tr>
+		<tr>
+			<td>Nama Sesuai Ijasah</td>
+			<td><input type="text" name="namaijasah" id="namaijasah" onchange="fungsi()"></td>
+			<td><a id="warnnamaijasah" style="color: red;"></a></td>
+		</tr>
+		<tr>
+			<td>Jenis Identitas</td>
+			<td>
+				<select name="jenisidentitas" id="jenisidentitas" onchange="fungsi()">
+					<option value="kosong">select an option</option>>
+					<option value="pilih1">Pilih1</option>
+					<option value="pilih2">Pilih2</option>
+					<option value="pilih3">Pilih3</option>
+					<option value="pilih4">Pilih4</option>
+				</select>
+			</td>
+			<td><a id="warnjenisidentitas" style="color: red;"></a></td>
+		</tr>
+		<tr>
+			<td>Nomor Identitas</td>
+			<td><input type="nomoridentitas" name="nomoridentitas" id="nomoridentitas" onchange="fungsi()"></td>
+			<td><a id="warnnomoridentitas" style="color: red;"></a></td>
+		</tr>
+			<td>Kewarganegaraan</td>
+			<td>
+				<select name="kewarganegaraan" id="kewarganegaraan" onchange="fungsi()">
+					<option value="kosong">select an option</option>>
+					<option value="pilih1">Pilih1</option>
+					<option value="pilih2">Pilih2</option>
+					<option value="pilih3">Pilih3</option>
+					<option value="pilih4">Pilih4</option>
+				</select>
+			</td>
+			<td><a id="warnkewarganegaraan" style="color: red;"></a></td>
+	</table>
+</form>
+<script type="text/javascript" src="../quizhtmljs.js"></script>
+</body>
+</html>

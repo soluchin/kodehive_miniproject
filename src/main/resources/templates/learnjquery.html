@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Quiz Jquery 1</title>
+	<style>
+	.warna {
+		color: red;
+	}
+	.paddingclass {
+		padding: 20px;
+		text-align: center
+	}
+	.center {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.border	{
+		padding: 20px 20px 50px 20px;
+		margin-top: 50px;
+		margin-left: 100px;
+		margin-right: 100px;
+		background-color: #A6D1E6;
+		border-style: solid;
+		border-color: #7F5283;
+		border-radius: 20px;
+	}
+	.satu {
+		width: 0px;
+		border-left: 100px solid red;
+		border-right: 100px solid red;
+		border-bottom: 100px solid orange;
+		border-top: 0px solid blue;
+		display: none;
+	}
+	
+	.dua {
+		width: 0px;
+		border-left: 100px solid limegreen;
+		border-right: 100px solid limegreen;
+		border-bottom: 0px solid yellow;
+		border-top: 100px solid green;
+		display: none;
+	}
+	
+	.tiga {
+		width: 0px;
+		border-left: 100px solid dodgerblue;
+		border-right: 100px solid dodgerblue;
+		border-bottom: 0px solid yellow;
+		border-top: 100px solid blue;
+		display: none;
+	}
+	</style>
+	<script type="text/javascript" src="../jquery-3.6.0.min.js"></script>
+</head>
+
+
+<body>
+<h1>Quiz Jquery 1</h1>
+
+<!-- nomor 5 -->
+<div class="border">
+	<h2 class="paddingclass">nomor 5:</h2>
+	
+	<p id="target" class='paddingclass'>target paragraph</p>
+	<table class="center">
+		<tr>
+			<td><button id="beriwarna">beri warna</button></td>
+			<td><button id="hapuswarna">hapus warna warna</button></td>
+		</tr>
+	</table>
+</div>
+
+<script type="text/javascript">
+	$('#beriwarna').click(function(){
+		$('#target').addClass('warna')
+	})
+	$('#hapuswarna').click(function(){
+		$('#target').removeClass('warna')
+	})
+</script>
+
+<!-- nomor 6 -->
+<div class="border">
+	<h2 class="paddingclass">nomor 6:</h2>
+	<table class="center" style="text-align: center;">
+	<tr>
+		<td><button id="handle" style="margin-bottom:20px;">fade</button></td>
+	</tr>
+	<tr>
+		<td><div id="box1" class="satu"></div></td>
+	</tr>
+	<tr>
+		<td><div id="box2" class="dua"></div></td>
+	</tr>
+	<tr>
+		<td><div id="box3" class="tiga"></div></td>
+	</tr>
+	</table>
+</div>
+
+<script type="text/javascript">
+	$('#handle').click(function(){
+		$('#box1').fadeToggle(500);
+		$('#box2').fadeToggle(1000);
+		$('#box3').fadeToggle(1500);
+	})
+</script>
+
+
+</body>
+</html>

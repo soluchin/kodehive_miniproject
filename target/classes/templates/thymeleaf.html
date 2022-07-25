@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <title>Get data using thymeleaf</title>
+	    <script type="text/javascript" src="../jquery-3.6.0.min.js"></script>
+	</head>
+	<body>
+		<table>
+		<thead>
+			<tr>
+				<th>Judul</th>
+				<th>Tahun</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="data: ${skripsi}">
+				<td th:text="${data.judul}"></td>
+				<td th:text="${data.nilai}"></td>
+			</tr>
+		</tbody>
+		</table>
+		
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$.ajax({
+					url: 'thymeleaf',
+					type: 'get',
+					dataType: 'html'
+				})
+			})
+		</script>
+		
+	</body>
+
+</html>
