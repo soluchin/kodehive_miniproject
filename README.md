@@ -1,2 +1,2 @@
-# kodehive_miniproject
-Mini project backend developer bootcamp - Kodehive
+# kodehive - mini project
+Develop by : Rafi Solichin
