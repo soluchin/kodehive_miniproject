@@ -1,6 +1,9 @@
 package com.miniproject.linkedin.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -9,6 +12,9 @@ import lombok.Data;
 @Entity
 @Table(name= "userskill")
 public class UserSkillModel {
-	public int userid;
-	public int skillid;
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private int rownumber;
+	private int userid;
+	private int skillid;
 }

@@ -5,7 +5,7 @@
  //DOM
  
 function fungsi(){
-if(document.getElementById('user').value==""){
+if(document.getElementById('college').value=="1"){
 	document.getElementById('warnuser').innerHTML= "*username tidak boleh kosong"
 }
 else{

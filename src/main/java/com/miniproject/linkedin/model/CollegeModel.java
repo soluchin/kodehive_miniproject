@@ -14,7 +14,7 @@ import lombok.Data;
 public class CollegeModel {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	public int collegeid;
-	public int collegename;
+	private int collegeid;
+	public String collegename;
 
 }

@@ -17,12 +17,11 @@ public class UserModel {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int userid;
-	private String username;
+	private String firstname;
+	private String lastname;
+	private String email;
 	private int collegeid;
-	private Date gradyear;
+	private int gradyear;
 	private int genderid;
 	private String contact;
-	private int skill1id;
-	private int skill2id;
-	private int skill3id;
 }

@@ -10,11 +10,11 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table
+@Table(name= "skill")
 public class SkillModel {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	public int skillid;
+	private int skillid;
 	public String skillname;
 
 }
