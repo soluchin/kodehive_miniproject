@@ -3,11 +3,14 @@ package com.miniproject.linkedin.repository.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.miniproject.linkedin.model.CollegeModel;
 import com.miniproject.linkedin.model.temp.InsertDataModel;
 import com.miniproject.linkedin.model.temp.InsertSkillModel;
+import com.miniproject.linkedin.model.temp.ListAllAccountModel;
 import com.miniproject.linkedin.repository.ILinkedinRepository;
 
 @Repository
@@ -99,6 +102,28 @@ public class LinkedinRepository implements ILinkedinRepository{
 				});
 		}
 		return 0;
+	}
+
+	@Override
+	public List<ListAllAccountModel> listAllAccount() {
+		var q= "SELECT u.userid AS userid, "
+				+ "CONCAT_WS(' ', u.firstname, u.lastname) AS name, "
+				+ "g.gendername AS gender, "
+				+ "c.collegename AS college, "
+				+ "u.gradyear AS gradyear "
+				+ "FROM user AS u "
+				+ "JOIN gender AS g ON u.genderid = g.genderid "
+				+ "JOIN college AS c ON u.collegeid = c.collegeid ";
+		var result= jdbc.query(q, new BeanPropertyRowMapper<ListAllAccountModel>(ListAllAccountModel.class));
+		return result;
+	}
+
+	@Override
+	public List<CollegeModel> getCollegeData() {
+		var q= "SELECT collegeid, collegename "
+				+ "FROM college";
+		var result= jdbc.query(q, new BeanPropertyRowMapper<CollegeModel>(CollegeModel.class));
+		return result;
 	}
 
 }

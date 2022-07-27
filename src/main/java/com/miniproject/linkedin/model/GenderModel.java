@@ -13,7 +13,6 @@ import lombok.Data;
 @Table(name= "gender")
 public class GenderModel {
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int genderid;
 	private String gendername;
 }
