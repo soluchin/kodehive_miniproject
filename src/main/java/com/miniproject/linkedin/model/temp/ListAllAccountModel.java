@@ -1,5 +1,7 @@
 package com.miniproject.linkedin.model.temp;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data

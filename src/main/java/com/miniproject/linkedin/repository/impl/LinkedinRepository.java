@@ -1,16 +1,22 @@
 package com.miniproject.linkedin.repository.impl;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.miniproject.linkedin.model.CollegeModel;
 import com.miniproject.linkedin.model.temp.InsertDataModel;
 import com.miniproject.linkedin.model.temp.InsertSkillModel;
 import com.miniproject.linkedin.model.temp.ListAllAccountModel;
+import com.miniproject.linkedin.model.temp.ListAllUserSkillModel;
+import com.miniproject.linkedin.model.temp.Wrapper;
 import com.miniproject.linkedin.repository.ILinkedinRepository;
 
 @Repository
@@ -119,11 +125,58 @@ public class LinkedinRepository implements ILinkedinRepository{
 	}
 
 	@Override
+	public List<ListAllUserSkillModel> listAllSkill() {
+		var q= "SELECT us.userid AS userid, s.skillname AS skillname "
+				+ "FROM userskill AS us "
+				+ "JOIN skill AS s ON us.skillid=s.skillid;";
+		var result= jdbc.query(q, new BeanPropertyRowMapper<ListAllUserSkillModel>(ListAllUserSkillModel.class));
+		return result;
+	}
+
+	@Override
 	public List<CollegeModel> getCollegeData() {
 		var q= "SELECT collegeid, collegename "
 				+ "FROM college";
 		var result= jdbc.query(q, new BeanPropertyRowMapper<CollegeModel>(CollegeModel.class));
 		return result;
 	}
+
+	@Override
+	public List<Integer> listAccountBySkill(Wrapper skills) {
+		var liststring= skills.getStrings();
+		String strskills = String.join(", ", liststring);
+		var q= "SELECT userid "
+				+ "FROM userskill AS us "
+				+ "JOIN skill AS s ON us.skillid = s.skillid "
+				+ "WHERE s.skillname IN ("+ strskills +") "
+				+ "GROUP BY userid";
+		var result = jdbc.query(q, new RowMapper<Integer>() {
+
+			@Override
+			public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+				return rs.getInt(1);
+			}
+			
+		});
+		return result;
+	}
+
+	@Override
+	public List<ListAllAccountModel> listAccountByUserid(Wrapper userid) {
+		var listuserid= userid.getIntegers();
+		String struserid = listuserid.stream().map(String::valueOf).collect(Collectors.joining(","));
+		var q= "SELECT u.userid AS userid, "
+				+ "CONCAT_WS(' ', u.firstname, u.lastname) AS name, "
+				+ "g.gendername AS gender, "
+				+ "c.collegename AS college, "
+				+ "u.gradyear AS gradyear "
+				+ "FROM user AS u "
+				+ "JOIN gender AS g ON u.genderid = g.genderid "
+				+ "JOIN college AS c ON u.collegeid = c.collegeid "
+				+ "WHERE userid IN ("+ struserid+")";
+		var result= jdbc.query(q, new BeanPropertyRowMapper<ListAllAccountModel>(ListAllAccountModel.class));
+		return result;
+	}
+
 
 }

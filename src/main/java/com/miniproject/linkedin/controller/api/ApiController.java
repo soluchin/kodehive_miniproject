@@ -2,6 +2,7 @@ package com.miniproject.linkedin.controller.api;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,11 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.miniproject.linkedin.model.temp.InsertDataModel;
 import com.miniproject.linkedin.model.temp.InsertSkillModel;
 import com.miniproject.linkedin.model.temp.ListAllAccountModel;
+import com.miniproject.linkedin.model.temp.Wrapper;
 import com.miniproject.linkedin.service.ILinkedinService;
 
 @RestController
@@ -39,6 +42,17 @@ public class ApiController {
 	@GetMapping("/listallaccount")
 	public List<ListAllAccountModel> listAllAccount() {
 		return linkedinservice.listAllAccount();
+	}
+	
+	@GetMapping("/listuseridbyskill")
+	public List<Integer> listAccountBySkill(@RequestBody Wrapper skills){
+		return linkedinservice.listAccountBySkill(skills);
+	}
+	
+	@GetMapping("/listaccountbyuserid")
+	public List<ListAllAccountModel> listAccountByUserid(@RequestBody Wrapper userid){
+		return linkedinservice.listAccountByUserid(userid);
+		
 	}
 
 }
