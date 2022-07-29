@@ -91,8 +91,6 @@ public class LinkedinRepository implements ILinkedinRepository{
 		
 		switch(insertmodel.getSkillid()) {
 		case 0:
-			break;
-		case 1:
 			jdbc.update(qskill,
 				new Object[] {
 					insertmodel.getSkillname()
