@@ -12,34 +12,34 @@
 
 <h1>Linkedin-like Project</h1>
 <hr>
+
+<div style="margin:50px 50px; padding: 80px 60px; background-color: #eee;" class="rounded-3">
 <h2>Create An Account</h2>
 <p>Don't have an account yet? just create by fill the form below</p>
-
-<div style="margin:50px 50px; padding: 80px 60px; background-color: #eee;">
 <form id="createAccountForm" method="post">
-	<table>
+	<table style="margin-top: 50px; margin-left: 50px;">
 		<tr>
 			<td>Email</td>
-			<td><input type="email" name="email" id="email"></td>
+			<td><input type="email" name="email" id="email" class="form-control form-control-lg"></td>
 		</tr>
 		<tr>
 			<td>Password</td>
-			<td><input type="password" name="password" id="password"></td>
+			<td><input type="password" name="password" id="password" class="form-control form-control-lg"></td>
 		</tr>
 		<tr>
 			<td>---</td>
 		</tr>
 		<tr>
 			<td>First name</td>
-			<td><input type="text" name="firstname" id="firstname"></td>
+			<td><input type="text" name="firstname" id="firstname" class="form-control form-control-lg"></td>
 		</tr>
 		<tr>
 			<td>Last name</td>
-			<td><input type="text" name="lastname" id="lastname"></td>
+			<td><input type="text" name="lastname" id="lastname" class="form-control form-control-lg"></td>
 		</tr>
 		<tr>
 			<td>Gender</td>
-			<td>
+			<td class="form-check form-check-inline">
 				<input type="radio" id="men" name="gender" value="1">
 	  			<label for="html">Male</label>
 	  			<input type="radio" id="women" name="gender" value="0">
@@ -48,7 +48,7 @@
 		</tr>
 		<tr>
 			<td>Contact</td>
-			<td><input type="text" name="contact" id="contact"></td>
+			<td><input type="text" name="contact" id="contact" class="form-control form-control-lg"></td>
 		</tr>
 		<tr>
 			<td>---</td>
@@ -56,7 +56,7 @@
 		<tr>
 			<td>college</td>
 			<td>
-				<select name="collegeid" id="collegeid" onchange="otherFunction()" class="form-select">
+				<select name="collegeid" id="collegeid" onchange="otherFunction()" class="form-select form-select-lg">
 					<option th:each="cd : ${collegeData}"
 						th:value="${cd.collegeid}" th:text="${cd.collegename}"
 					>other</option>
@@ -66,19 +66,20 @@
 		<tr>
 			<td></td>
 			<td>
-				<input type="text" name="collegename" id="collegename">
+				<input type="text" name="collegename" id="collegename" class="form-control form-control-lg">
 			</td>
 		</tr>
 		<tr>
 			<td>Graduation Year</td>
-			<td><input type="text" name="gradyear" id="gradyear"></td>
+			<td><input type="text" name="gradyear" id="gradyear" class="form-control form-control-lg"></td>
 		</tr>
 		<tr>
 			<td> 
-				<button id="submitform" type="button" class="btn btn-primary" onclick="send()">Submit</button>
+				
 			</td>
 		</tr>
 	</table>
+	<button id="submitform" type="button" class="btn btn-lg btn-primary" onclick="send()" style="margin-top: 50px; margin-left: 50px;">Create</button>
 </form>
 </div>
 

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.miniproject.linkedin.model.CollegeModel;
+import com.miniproject.linkedin.model.SkillModel;
+import com.miniproject.linkedin.model.UserModel;
 import com.miniproject.linkedin.model.temp.InsertDataModel;
 import com.miniproject.linkedin.model.temp.InsertSkillModel;
 import com.miniproject.linkedin.model.temp.ListAllAccountModel;
@@ -57,6 +59,21 @@ public class LinkedinService implements ILinkedinService{
 	@Override
 	public List<ListAllAccountModel> listAccountByUserid(Wrapper userid) {
 		return linkedinrepository.listAccountByUserid(userid);
+	}
+
+	@Override
+	public List<SkillModel> listAvailableSkill() {
+		return linkedinrepository.listAvailableSkill();
+	}
+
+	@Override
+	public String deleteDataByUserid(int id) {
+		return linkedinrepository.deleteDataByUserid(id);
+	}
+
+	@Override
+	public String updateDataByUserid(UserModel usermodel) {
+		return linkedinrepository.updateDataByUserid(usermodel);
 	}
 
 

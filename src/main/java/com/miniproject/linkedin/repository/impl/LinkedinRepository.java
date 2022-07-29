@@ -12,6 +12,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.miniproject.linkedin.model.CollegeModel;
+import com.miniproject.linkedin.model.SkillModel;
+import com.miniproject.linkedin.model.UserModel;
 import com.miniproject.linkedin.model.temp.InsertDataModel;
 import com.miniproject.linkedin.model.temp.InsertSkillModel;
 import com.miniproject.linkedin.model.temp.ListAllAccountModel;
@@ -126,7 +128,9 @@ public class LinkedinRepository implements ILinkedinRepository{
 
 	@Override
 	public List<ListAllUserSkillModel> listAllSkill() {
-		var q= "SELECT us.userid AS userid, s.skillname AS skillname "
+		var q= "SELECT us.userid AS userid, "
+				+ "s.skillname AS skillname, "
+				+ "s.skillid AS skillid "
 				+ "FROM userskill AS us "
 				+ "JOIN skill AS s ON us.skillid=s.skillid;";
 		var result= jdbc.query(q, new BeanPropertyRowMapper<ListAllUserSkillModel>(ListAllUserSkillModel.class));
@@ -143,12 +147,12 @@ public class LinkedinRepository implements ILinkedinRepository{
 
 	@Override
 	public List<Integer> listAccountBySkill(Wrapper skills) {
-		var liststring= skills.getStrings();
-		String strskills = String.join(", ", liststring);
+		var listuserid= skills.getIntegers();
+		String strskills = listuserid.stream().map(String::valueOf).collect(Collectors.joining(","));
 		var q= "SELECT userid "
 				+ "FROM userskill AS us "
 				+ "JOIN skill AS s ON us.skillid = s.skillid "
-				+ "WHERE s.skillname IN ("+ strskills +") "
+				+ "WHERE s.skillid IN ("+strskills+") "
 				+ "GROUP BY userid";
 		var result = jdbc.query(q, new RowMapper<Integer>() {
 
@@ -176,6 +180,54 @@ public class LinkedinRepository implements ILinkedinRepository{
 				+ "WHERE userid IN ("+ struserid+")";
 		var result= jdbc.query(q, new BeanPropertyRowMapper<ListAllAccountModel>(ListAllAccountModel.class));
 		return result;
+	}
+
+	@Override
+	public List<SkillModel> listAvailableSkill() {
+		var q= "SELECT * FROM skill";
+		return jdbc.query(q, new BeanPropertyRowMapper<SkillModel>(SkillModel.class));
+	}
+
+	@Override
+	public List<String> skillNameBySkillid(List<Integer> integers) {
+		String skillid = integers.stream().map(String::valueOf).collect(Collectors.joining(","));
+		var q= "SELECT skillname FROM skill WHERE skillid IN ("+ skillid+")";
+		return jdbc.query(q, new RowMapper<String>() {
+			@Override
+			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+				return rs.getString(1);
+			}
+			
+		});
+	}
+
+	@Override
+	public String deleteDataByUserid(int id) {
+		var quser= "DELETE FROM user WHERE userid = "+id;
+		var quserskill= "DELETE FROM userskill WHERE userid = "+id;
+		var qauthority= "DELETE FROM authority WHERE userid = "+id;
+		jdbc.update(quser);
+		jdbc.update(quserskill);
+		jdbc.update(qauthority);
+		return "success";
+	}
+
+	@Override
+	public String updateDataByUserid(UserModel usermodel) {
+		var q= "UPDATE user "
+				+ "SET ";
+		if(usermodel.getFirstname()!= null) {
+			q= q+"firstname = '" + usermodel.getFirstname()+"' ";
+		}
+		if(usermodel.getLastname()!= null) {
+			q= q+"lastname = '" + usermodel.getLastname()+"' ";
+		}
+		if(usermodel.getContact()!= null) {
+			q= q+"contact = '" + usermodel.getContact()+"' ";
+		}
+		q= q+"WHERE userid = "+usermodel.getUserid();
+		jdbc.update(q);
+		return "success";
 	}
 
 

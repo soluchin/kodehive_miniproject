@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.miniproject.linkedin.model.UserModel;
 import com.miniproject.linkedin.model.temp.InsertDataModel;
 import com.miniproject.linkedin.model.temp.InsertSkillModel;
 import com.miniproject.linkedin.model.temp.ListAllAccountModel;
@@ -54,5 +55,14 @@ public class ApiController {
 		return linkedinservice.listAccountByUserid(userid);
 		
 	}
-
+	
+	@GetMapping("deletedatabyuserid{id}")
+	public String deleteDataByUserid(@RequestParam int id) {
+		return linkedinservice.deleteDataByUserid(id);
+	}
+	
+	@PostMapping("updatedatabyuserid")
+	public String updateDataByUserid(@RequestBody UserModel usermodel){
+		return linkedinservice.updateDataByUserid(usermodel);
+	}
 }

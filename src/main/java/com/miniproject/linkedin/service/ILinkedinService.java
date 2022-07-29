@@ -3,6 +3,8 @@ package com.miniproject.linkedin.service;
 import java.util.List;
 
 import com.miniproject.linkedin.model.CollegeModel;
+import com.miniproject.linkedin.model.SkillModel;
+import com.miniproject.linkedin.model.UserModel;
 import com.miniproject.linkedin.model.temp.InsertDataModel;
 import com.miniproject.linkedin.model.temp.InsertSkillModel;
 import com.miniproject.linkedin.model.temp.ListAllAccountModel;
@@ -18,4 +20,7 @@ public interface ILinkedinService {
 	public List<ListAllUserSkillModel> listAllSkill();
 	public List<Integer> listAccountBySkill(Wrapper skills);
 	public List<ListAllAccountModel> listAccountByUserid(Wrapper userid);
+	public List<SkillModel> listAvailableSkill();
+	public String deleteDataByUserid(int id);
+	public String updateDataByUserid(UserModel usermodel);
 }
